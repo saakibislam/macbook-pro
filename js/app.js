@@ -1,64 +1,72 @@
+const memoryCostField = document.getElementById("memoryCost");
+const storageCostField = document.getElementById("storageCost");
+const deliveryCostField = document.getElementById("deliveryCost");
+const totalPriceField = document.getElementById("totalPrice");
+const discountTotalField = document.getElementById("discount-total");
+
+// Total Price Table Update
+function updateTotal() {
+    let totalPrice = 1299;
+    const memoryPrice = parseFloat(memoryCostField.innerText);
+    const storagePrice = parseFloat(storageCostField.innerText);
+    const deliveryPrice = parseFloat(deliveryCostField.innerText);
+    totalPrice = totalPrice + memoryPrice + storagePrice + deliveryPrice;
+    totalPriceField.innerText = totalPrice;
+    discountTotalField.innerText = totalPrice;
+}
+
 // Memory Selection 
 function memoryCostCalculation(memory) {
-    const memoryCostField = document.getElementById("memoryCost");
     if (memory == '16gb') {
         memoryCostField.innerText = 180;
-        return parseFloat(180);
     } else {
         memoryCostField.innerText = 0;
-        return parseFloat(0);
-
     }
+    updateTotal();
 }
 
 document.getElementById("8gb-memory").addEventListener("click", function () {
-    const memoryCost = memoryCostCalculation('8gb');
+    memoryCostCalculation('8gb');
 })
 document.getElementById("16gb-memory").addEventListener("click", function () {
-    const memoryCost = memoryCostCalculation('16gb');
+    memoryCostCalculation('16gb');
 })
 
 // Storage Selection
 function storageCostCalculation(storage) {
-    const storageCostField = document.getElementById("storageCost");
     if (storage == '1tb') {
         storageCostField.innerText = 180;
-        return parseFloat(180);
     } else if (storage == '512gb') {
         storageCostField.innerText = 100;
-        return parseFloat(100);
-    }
-    else {
+    } else {
         storageCostField.innerText = 0;
-        return parseFloat(0);
     }
+    updateTotal();
 }
 
 document.getElementById("256gb-storage").addEventListener("click", function () {
-    const storageCost = storageCostCalculation('256gb');
+    storageCostCalculation('256gb');
 })
 document.getElementById("512gb-storage").addEventListener("click", function () {
-    const storageCost = storageCostCalculation('512gb');
+    storageCostCalculation('512gb');
 })
 document.getElementById("1tb-storage").addEventListener("click", function () {
-    const storageCost = storageCostCalculation('1tb');
+    storageCostCalculation('1tb');
 })
 
 // Delivery Selection 
 function deliveryChargeCalculation(delivery) {
-    const deliveryCostField = document.getElementById("deliveryCost");
     if (delivery == 'express') {
         deliveryCostField.innerText = 20;
-        return parseFloat(20);
     } else {
         deliveryCostField.innerText = 0;
-        return parseFloat(0);
     }
+    updateTotal();
 }
 
 document.getElementById("prime-delivery").addEventListener("click", function () {
-    const deliveryCharge = deliveryChargeCalculation('prime');
+    deliveryChargeCalculation('prime');
 })
 document.getElementById("express-delivery").addEventListener("click", function () {
-    const deliveryCharge = deliveryChargeCalculation('express');
+    deliveryChargeCalculation('express');
 })
