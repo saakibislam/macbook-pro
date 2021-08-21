@@ -2,7 +2,8 @@ const memoryCostField = document.getElementById("memoryCost");
 const storageCostField = document.getElementById("storageCost");
 const deliveryCostField = document.getElementById("deliveryCost");
 const totalPriceField = document.getElementById("totalPrice");
-const discountTotalField = document.getElementById("discount-total");
+const discountTotalField = document.getElementById("discountTotal");
+const promoBoxField = document.getElementById("promoBox");
 
 // Memory Selection 
 function memoryCostCalculation(memory) {
@@ -71,6 +72,7 @@ function updateTotal() {
 
     totalPriceField.innerText = totalPrice;
     discountTotalField.innerText = totalPrice;
+    promoBoxField.style.visibility = 'visible';
 }
 
 // Coupon Apply System
@@ -83,10 +85,10 @@ function applyCoupon() {
         const totalPrice = parseFloat(totalPriceField.innerText);
         const discountAmount = totalPrice * 0.2;
         discountTotalField.innerText = totalPrice - discountAmount;
-        document.getElementById("promoBox").style.visibility = 'hidden';
+        promoBoxField.style.visibility = 'hidden';
         // couponTextField.setAttribute("disabled", "");
     }
 }
-document.getElementById("apply").addEventListener("click", function () {
+document.getElementById("applyButton").addEventListener("click", function () {
     applyCoupon();
 })
