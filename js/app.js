@@ -4,17 +4,6 @@ const deliveryCostField = document.getElementById("deliveryCost");
 const totalPriceField = document.getElementById("totalPrice");
 const discountTotalField = document.getElementById("discount-total");
 
-// Total Price Table Update
-function updateTotal() {
-    let totalPrice = 1299;
-    const memoryPrice = parseFloat(memoryCostField.innerText);
-    const storagePrice = parseFloat(storageCostField.innerText);
-    const deliveryPrice = parseFloat(deliveryCostField.innerText);
-    totalPrice = totalPrice + memoryPrice + storagePrice + deliveryPrice;
-    totalPriceField.innerText = totalPrice;
-    discountTotalField.innerText = totalPrice;
-}
-
 // Memory Selection 
 function memoryCostCalculation(memory) {
     if (memory == '16gb') {
@@ -69,4 +58,35 @@ document.getElementById("prime-delivery").addEventListener("click", function () 
 })
 document.getElementById("express-delivery").addEventListener("click", function () {
     deliveryChargeCalculation('express');
+})
+
+// Total Price Table Update
+function updateTotal() {
+    let totalPrice = 1299;
+    const memoryPrice = parseFloat(memoryCostField.innerText);
+    const storagePrice = parseFloat(storageCostField.innerText);
+    const deliveryPrice = parseFloat(deliveryCostField.innerText);
+
+    totalPrice = totalPrice + memoryPrice + storagePrice + deliveryPrice;
+
+    totalPriceField.innerText = totalPrice;
+    discountTotalField.innerText = totalPrice;
+}
+
+// Coupon Apply System
+function applyCoupon() {
+    const couponTextField = document.getElementById("couponText");
+    const couponText = couponTextField.value;
+    couponTextField.value = '';
+
+    if (couponText.toLowerCase() == 'stevekaku') {
+        const totalPrice = parseFloat(totalPriceField.innerText);
+        const discountAmount = totalPrice * 0.2;
+        discountTotalField.innerText = totalPrice - discountAmount;
+        document.getElementById("promoBox").style.visibility = 'hidden';
+        // couponTextField.setAttribute("disabled", "");
+    }
+}
+document.getElementById("apply").addEventListener("click", function () {
+    applyCoupon();
 })
